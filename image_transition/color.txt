@@ -1,0 +1,7 @@
+Layer Sky RGB = 00,00,50 (/100)
+Layer Cloud RGB = 100,100,100 (/100)
+Layer Water RGB = 00,00,100 (/100)
+Layer Mountain RGB = 30,30,00 (/100)
+Layer Ground RGB = 30,30,30 (/100)
+Layer Grass RGB = 00,100,00 (/100)
+Layer Tree RGB = 00,50,00 (/100)
