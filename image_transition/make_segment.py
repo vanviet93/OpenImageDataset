@@ -10,16 +10,18 @@ layers = {
 	'Grass': np.float32([0,255,0]), 
 	'Tree': np.float32([0,127,0])}
 UNIDENTIFIED_LAYER_COLOR = np.float32([0,0,0])
-source_folder = './mask/'
+full_folder = './full/'
+part_folder = './part/'
 target_folder = './segment/'
-
-image_files = os.listdir(source_folder)
+image_files = os.listdir(full_folder)
 image_files = [image_file for image_file in image_files if image_file.endswith('xcf')]
 image_names = [image_file[:-4] for image_file in image_files]
 for image_name in image_names:
+	print('--------------')
+	print(image_name)
 	image = None
 	for i, layer in enumerate(layers):
-		image_path = source_folder + image_name + '_' + layer + '.png'
+		image_path = part_folder + image_name + '_' + layer + '.png'
 		print(image_path)
 		if not os.path.exists(image_path):
 			continue
@@ -27,10 +29,11 @@ for image_name in image_names:
 		gray = np.mean(layer_image, axis=2)
 		if image is None:
 			h, w, _ = layer_image.shape
-			image = np.zeros([h, w], dtype=np.uint8)
+			image = np.zeros([h, w, 3], dtype=np.uint8)
 		for m in range(h):
 			for n in range(w):
 				if gray[m,n]>10:
-					image[m,n] = i
-	image = image + 1
+					image[m,n] = layers[layer]
+	print('Image name', image_name)
+	print('Image', image.shape)
 	cv2.imwrite(target_folder + image_name + '.png', image)
