@@ -1,7 +1,7 @@
 import os
 import cv2
 import numpy as np
-tag = 'butterfly1'
+tag = 'dog'
 source_folder = './image/' + tag + '/'
 target_folder = './mask/' + tag + '/'
 for file in os.listdir(source_folder):
